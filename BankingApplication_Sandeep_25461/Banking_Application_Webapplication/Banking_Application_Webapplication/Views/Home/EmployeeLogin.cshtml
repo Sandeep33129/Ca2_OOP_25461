@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Employee Login";
+}
+
+<style>
+    /* Custom CSS for EmployeeLogin */
+    .card {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .error-message {
+        color: #dc3545;
+        margin-top: 10px;
+        text-align: center;
+    }
+</style>
+
+<div class="card">
+    <h5 class="card-title">Bank Employee Login</h5>
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            <label for="pin">Enter PIN:</label>
+            <input type="password" class="form-control" id="pin" name="pin" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="error-message">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>

@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Employee Dashboard";
+}
+
+<style>
+    /* Custom CSS for Employee Dashboard */
+    .dashboard-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-description {
+        font-size: 16px;
+        color: #555;
+    }
+</style>
+
+<div class="dashboard-container">
+    <h2 class="dashboard-title">Employee Dashboard</h2>
+
+    <div class="card">
+        <h3 class="card-title">Create Customer</h3>
+        <p class="card-description">Create a new customer account with savings and current accounts.</p>
+        <p>@Html.ActionLink("Create Customer", "CreateCustomer", "Employee", null, new { @class = "btn btn-primary" })</p>
+    </div>
+
+    <div class="card">
+        <h3 class="card-title">Customer List</h3>
+        <p class="card-description">View the list of all customers and their account details.</p>
+        <p>@Html.ActionLink("View Customer List", "CustomerList", "Employee", null, new { @class = "btn btn-primary" })</p>
+    </div>
+
+  
+</div>

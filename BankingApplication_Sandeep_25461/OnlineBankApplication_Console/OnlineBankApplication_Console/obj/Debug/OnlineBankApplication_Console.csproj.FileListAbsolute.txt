@@ -1,0 +1,7 @@
+C:\Users\Dell\source\repos\OnlineBankApplication_Console\OnlineBankApplication_Console\bin\Debug\OnlineBankApplication_Console.exe.config
+C:\Users\Dell\source\repos\OnlineBankApplication_Console\OnlineBankApplication_Console\bin\Debug\OnlineBankApplication_Console.exe
+C:\Users\Dell\source\repos\OnlineBankApplication_Console\OnlineBankApplication_Console\bin\Debug\OnlineBankApplication_Console.pdb
+C:\Users\Dell\source\repos\OnlineBankApplication_Console\OnlineBankApplication_Console\obj\Debug\OnlineBankApplication_Console.csproj.AssemblyReference.cache
+C:\Users\Dell\source\repos\OnlineBankApplication_Console\OnlineBankApplication_Console\obj\Debug\OnlineBankApplication_Console.csproj.CoreCompileInputs.cache
+C:\Users\Dell\source\repos\OnlineBankApplication_Console\OnlineBankApplication_Console\obj\Debug\OnlineBankApplication_Console.exe
+C:\Users\Dell\source\repos\OnlineBankApplication_Console\OnlineBankApplication_Console\obj\Debug\OnlineBankApplication_Console.pdb

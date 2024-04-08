@@ -1,0 +1,95 @@
+﻿@using Banking_Application_Webapplication 
+
+@model List<Transaction> 
+
+
+
+<style>
+    /* Custom styles for transaction report */
+    /* Custom styles for transaction report */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #007bff; /* Color for the heading text */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    tbody tr:hover {
+        background-color: #f8f9fa;
+    }
+
+    thead th {
+        background-color: #007bff;
+        color: black; /* Text color for the table header */
+    }
+
+    tbody td {
+        background-color: white;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+</style>
+
+
+<div class="container">
+    <h2>Transaction Report</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Account Number</th>
+                <th>Action</th>
+                <th>Amount</th>
+                <th>Transaction Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var transaction in Model)
+            {
+                <tr>
+                    <td>@transaction.TransactionId</td>
+                    <td>@transaction.AccountNumber</td>
+                    <td>@transaction.Action</td>
+                    <td>@transaction.Amount</td>
+                    <td>@transaction.TransactionDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button onclick="window.history.back()" class="btn">Back</button>
+</div>

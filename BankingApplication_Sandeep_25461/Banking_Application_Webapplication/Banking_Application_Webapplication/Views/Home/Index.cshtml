@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<style>
+    /* Custom CSS for improved design */
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .card-text {
+        color: #666;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Bank Employee</h5>
+                    <p class="card-text">Login as a Bank Employee to manage customer accounts.</p>
+                    @Html.ActionLink("Login", "EmployeeLogin", "Home", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Customer</h5>
+                    <p class="card-text">Login as a Customer to access your account.</p>
+                    @Html.ActionLink("Login", "CustomerLogin", "Home", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger mt-3" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}

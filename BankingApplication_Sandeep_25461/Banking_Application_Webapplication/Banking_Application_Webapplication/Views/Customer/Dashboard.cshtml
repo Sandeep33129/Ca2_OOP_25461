@@ -1,0 +1,263 @@
+﻿@model Banking_Application_Webapplication.Customer
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<style>
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 16px; /* Adjusted button padding */
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    /* Highlight customer name */
+    .highlight {
+        font-weight: bold;
+        color: #007bff; /* or any other color you prefer */
+    }
+
+    /* Modal styles */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto; /* Centered on screen */
+        padding: 12px; /* Adjusted padding */
+        border: 1px solid #888;
+        width: 70%; /* Reduced width */
+        max-width: 400px; /* Max width */
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>
+
+<h2>Welcome, <span class="highlight">@Model.FirstName @Model.LastName</span></h2>
+
+<h3>Accounts:</h3>
+<table class="table">
+    <tr>
+        <th>Account Number</th>
+        <th>Type</th>
+        <th>Balance</th>
+    </tr>
+    @foreach (var account in Model.Accounts)
+    {
+        <tr>
+            <td>@account.AccountNumber</td>
+            <td>@account.Type</td>
+            <td>@account.Balance</td>
+        </tr>
+    }
+</table>
+<!-- Deposit Modal -->
+@*<div id="depositModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Deposit Money</h2>
+            <form id="depositForm" method="post" action="@Url.Action("Deposit", "Customer")">
+                @Html.Hidden("customerId", Model.Id)
+                @Html.Hidden("accountNumber", Model.Accounts.FirstOrDefault()?.AccountNumber)
+                <div class="form-group">
+                    <label for="accountNumberDeposit">Account Number:</label>
+                    <input type="text" id="accountNumberDeposit" name="accountNumber" class="form-control" value="@Model.Accounts.FirstOrDefault()?.AccountNumber" disabled />
+                </div>
+                <div class="form-group">
+                    <label for="amountDeposit">Amount:</label>
+                    <input type="text" id="amountDeposit" name="amount" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Deposit</button>
+            </form>
+        </div>
+    </div>*@
+
+
+<!-- Withdraw Modal -->
+@*<div id="withdrawModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Withdraw Money</h2>
+            <form method="post" action="@Url.Action("Withdraw", "Customer")">
+                @Html.Hidden("customerId", Model.Id)
+                @Html.Hidden("accountNumber", Model.Accounts.FirstOrDefault()?.AccountNumber)
+                <div class="form-group">
+                    <label for="accountNumberWithdraw">Account Number:</label>
+                    <input type="text" id="accountNumberWithdraw" name="accountNumber" class="form-control" value="@Model.Accounts.FirstOrDefault()?.AccountNumber" disabled />
+                </div>
+                <div class="form-group">
+                    <label for="amountWithdraw">Amount:</label>
+                    <input type="text" id="amountWithdraw" name="amount" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Withdraw</button>
+            </form>
+        </div>
+    </div>*@
+
+<!-- Deposit Modal -->
+<div id="depositModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Deposit Money</h2>
+        <form id="depositForm" method="post" action="@Url.Action("Deposit", "Customer")">
+            @Html.Hidden("customerId", Model.Id)
+            @Html.Hidden("accountNumber", Model.Accounts.FirstOrDefault()?.AccountNumber)
+            <div class="form-group">
+                <label for="accountNumberDeposit">Account Number:</label>
+                <input type="text" id="accountNumberDeposit" name="accountNumber" class="form-control" value="@Model.Accounts.FirstOrDefault()?.AccountNumber" readonly />
+            </div>
+            <div class="form-group">
+                <label for="accountTypeDeposit">Account Type:</label>
+                <select id="accountTypeDeposit" name="accountType" class="form-control">
+                    <option value="saving">Saving</option>
+                    <option value="current">Current</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amountDeposit">Amount:</label>
+                <input type="text" id="amountDeposit" name="amount" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Deposit</button>
+        </form>
+    </div>
+</div>
+
+<!-- Withdraw Modal -->
+<div id="withdrawModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Withdraw Money</h2>
+        <form method="post" action="@Url.Action("Withdraw", "Customer")">
+            @Html.Hidden("customerId", Model.Id)
+            @Html.Hidden("accountNumber", Model.Accounts.FirstOrDefault()?.AccountNumber)
+            <div class="form-group">
+                <label for="accountNumberWithdraw">Account Number:</label>
+                <input type="text" id="accountNumberWithdraw" name="accountNumber" class="form-control" value="@Model.Accounts.FirstOrDefault()?.AccountNumber" readonly />
+            </div>
+            <div class="form-group">
+                <label for="accountTypeWithdraw">Account Type:</label>
+                <select id="accountTypeWithdraw" name="accountType" class="form-control">
+                    <option value="saving">Saving</option>
+                    <option value="current">Current</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amountWithdraw">Amount:</label>
+                <input type="text" id="amountWithdraw" name="amount" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Withdraw</button>
+        </form>
+    </div>
+</div>
+
+<button id="depositBtn" class="btn btn-primary">Deposit</button>
+<button id="withdrawBtn" class="btn btn-primary">Withdraw</button>
+<a href="@Url.Action("TransactionReport", "Customer", new { customerId = Model.Id })" class="btn btn-primary">Transaction Report</a>
+
+<script>
+    // Get the modals
+    var depositModal = document.getElementById("depositModal");
+    var withdrawModal = document.getElementById("withdrawModal");
+
+    // Get the buttons that open the modals
+    var depositBtn = document.getElementById("depositBtn");
+    var withdrawBtn = document.getElementById("withdrawBtn");
+
+    // Get the close buttons within the modals
+    var closeButtons = document.getElementsByClassName("close");
+
+    // Function to close modals
+    function closeModal() {
+        depositModal.style.display = "none";
+        withdrawModal.style.display = "none";
+    }
+
+    // When the user clicks on close buttons, close the modals
+    for (var i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].onclick = closeModal;
+    }
+
+    // When the user clicks anywhere outside of the modals, close them
+    window.onclick = function (event) {
+        if (event.target == depositModal || event.target == withdrawModal) {
+            closeModal();
+        }
+    }
+
+    // Function to open deposit modal
+    function openDepositModal(accountNumber) {
+        depositModal.style.display = "block";
+        document.getElementById("accountNumberDeposit").value = accountNumber;
+    }
+
+    // Function to open withdraw modal
+    function openWithdrawModal(accountNumber) {
+        withdrawModal.style.display = "block";
+        document.getElementById("accountNumberWithdraw").value = accountNumber;
+    }
+
+    // When the user clicks the buttons, open the respective modals
+    depositBtn.onclick = function () {
+        var accountNumber = '@(Model.Accounts.FirstOrDefault()?.AccountNumber ?? "")';
+        openDepositModal(accountNumber);
+    };
+
+    withdrawBtn.onclick = function () {
+        var accountNumber = '@(Model.Accounts.FirstOrDefault()?.AccountNumber ?? "")';
+        openWithdrawModal(accountNumber);
+    };
+
+    // JavaScript for confirmation before submitting forms
+    function confirmAction(action) {
+        return confirm("Are you sure you want to " + action + "?");
+    }
+</script>
+
+

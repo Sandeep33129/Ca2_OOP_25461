@@ -1,0 +1,12 @@
+12345	Deposit	10000
+sg-10-19-7	Deposit	50000
+sg-10-19-7	Withdrawal	20000
+as-12-1-19	Deposit	100000
+as-12-1-19	Withdrawal	35000
+as-12-1-19	Withdrawal	100000
+nk-10-14-11	Deposit	1000
+500	Withdrawal	1
+nk-10-14-11	Withdrawal	100
+SS-14-19-19	Deposit	2000
+SS-14-19-19	Withdrawal	1000
+SS-14-19-19	Deposit	500
